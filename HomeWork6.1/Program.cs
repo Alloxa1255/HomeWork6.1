@@ -85,10 +85,11 @@ namespace Test2
             {
 
                 string lines;
+                string sep = "#";
                 while ((lines = sr.ReadLine()) != null)
                 {
                     string[] data = lines.Split();
-                    Console.WriteLine(string.Join("#", data[0], data[1], data[2], data[3], data[4], data[5], data[6]));
+                    Console.WriteLine(string.Join(sep, data[0], data[1], data[2], data[3], data[4], data[5], data[6]));
                 }
             }
             using (StreamReader sr = new StreamReader(Note, Encoding.Unicode))
