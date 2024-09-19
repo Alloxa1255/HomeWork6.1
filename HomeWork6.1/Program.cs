@@ -11,10 +11,11 @@ namespace Test2
     internal class Program
     {
 
-        const string Note = "db.txt";
+        //const string Note = "db.txt";
         static void Main(string[] args)
         {
-            Menu(Note);
+            string file = "db.txt";
+            Menu(file);
         }
         static void Menu(string path)
         {
@@ -29,10 +30,10 @@ namespace Test2
                     case '0':
                         break;
                     case '1':
-                        Imput();
+                        Imput(path);
                         break;
                     case '2':
-                        Print();
+                        Print(path);
                         break;
                     default:
                         Console.WriteLine("Неизвестная команда ");
@@ -43,12 +44,12 @@ namespace Test2
             while (key != '0');
 
         }
-        static void Imput()
+        static void Imput(string imput)
         {
             int id = 1;
-            id = File.ReadAllLines(Note).Length + 1;
+            id = File.ReadAllLines(imput).Length + 1;
 
-            using (StreamWriter sw = new StreamWriter(Note, true, Encoding.Unicode))// запись данных в файл
+            using (StreamWriter sw = new StreamWriter(imput,true, Encoding.Unicode))// запись данных в файл
             {
 
                 {
@@ -79,9 +80,9 @@ namespace Test2
                 }
             }
         }
-        static void Print()
+        static void Print(string print)
         {
-            using (StreamReader sr = new StreamReader(Note, Encoding.Unicode))// Вывод данных из файла
+            using (StreamReader sr = new StreamReader(print, Encoding.Unicode))// Вывод данных из файла
             {
 
                 string lines;
@@ -92,7 +93,7 @@ namespace Test2
                     Console.WriteLine(string.Join(sep, data[0], data[1], data[2], data[3], data[4], data[5], data[6]));
                 }
             }
-            using (StreamReader sr = new StreamReader(Note, Encoding.Unicode))
+            using (StreamReader sr = new StreamReader(print, Encoding.Unicode))
             {
                 string lines = sr.ReadLine();
                 if (lines == null)
@@ -102,11 +103,11 @@ namespace Test2
             }
 
         }
-        static void Check(string path)
+        static void Check(string chech)
         {
-            if (!File.Exists(path))
+            if (!File.Exists(chech))
             {
-                File.Create(path).Close();
+                File.Create(chech).Close();
                 Console.WriteLine("Файл создан ");
             }
             else
